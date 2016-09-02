@@ -1,0 +1,6 @@
+#Delete SVC, ING, RC and Deployment.
+
+kubectl delete rc rc-webserver
+kubectl delete ing web-ingress
+kubectl delete svc svc-webserver
+kubectl delete deployment web-deployment
