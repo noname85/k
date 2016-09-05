@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: web-deployment
 spec:
-  replicas: 3
+  replicas: 1
   strategy:
     type: RollingUpdate
   revisionHistoryLimit: 5
@@ -30,6 +30,23 @@ spec:
           readinessProbe:
             httpGet:
               path: /readiness
+              port: 80
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+        - image: nginx-second
+          name: second-nginx-server
+          ports:
+            - containerPort: 80
+          resources:
+            limits:
+              cpu: 100m
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 25Mi
+          readinessProbe:
+            httpGet:
+              path: /second
               port: 80
             initialDelaySeconds: 15
             timeoutSeconds: 1
