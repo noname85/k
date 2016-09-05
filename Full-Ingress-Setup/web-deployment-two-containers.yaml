@@ -33,7 +33,7 @@ spec:
               port: 80
             initialDelaySeconds: 15
             timeoutSeconds: 1
-        - image: nginx-second
+        - image: nginx
           name: second-nginx-server
           ports:
             - containerPort: 80
