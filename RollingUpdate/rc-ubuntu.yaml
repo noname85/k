@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rolling
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: rolling-test
+        image: ubuntu
+        command:
+         - "while true"
+         - "do"
+         - "sleep 10"
+         - "done"
+        ports:
+         - containerPort: 80
