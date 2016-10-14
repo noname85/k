@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deployment-static-ip
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-static-ip
+  template:
+    metadata:
+      labels:
+        app: nginx-static-ip
+    spec:
+      containers:
+        - image: nginx
+          name: nginx-server-static-ip
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 80
+            initialDelaySeconds: 15
+            timeoutSeconds: 1    
