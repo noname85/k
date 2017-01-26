@@ -7,6 +7,17 @@ YWRtaW51c2VybmFtZQ==
 $ echo -n "myverysecretpassword" | base64
 bXl2ZXJ5c2VjcmV0cGFzc3dvcmQ=
 ```
+###Create a yaml file with below format
+```javascript
+apiVersion: v1
+kind: Secret
+metadata:
+  name: thesecret
+type: Opaque
+data:
+  password: bXl2ZXJ5c2VjcmV0cGFzc3dvcmQ=
+  username: YWRtaW51c2VybmFtZQ==
+```
 
 #To create the secret from a file:
 
@@ -25,17 +36,4 @@ Data
 ====
 secretFile:  3153 bytes
 
-```
-
-
-#The Object should be as follows:
-```javascript
-apiVersion: v1
-kind: Secret
-metadata:
-  name: thesecret
-type: Opaque
-data:
-  password: bXl2ZXJ5c2VjcmV0cGFzc3dvcmQ=
-  username: YWRtaW51c2VybmFtZQ==
 ```
