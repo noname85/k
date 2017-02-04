@@ -4,3 +4,8 @@
 ```
 kubernetes.io/ingress.global-static-ip-name: static-ip-name 
 ```
+
+######- Select which "StorageClass" the "PersistentVolumeClaim" will use:
+```
+volume.beta.kubernetes.io/storage-class: "generic" 
+```
