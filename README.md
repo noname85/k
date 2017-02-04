@@ -1,7 +1,7 @@
 ## Kubernetes examples 
 
 
-### If you want to see the definitions of any "Kind" check below links:
+### If you want to see the options available for any "Kind" check below links:
 ###### Notice that you need to replace the "v1" by the "apiVersion" of the "Kind" you want to check
 
 #####- v1:
