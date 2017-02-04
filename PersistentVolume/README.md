@@ -58,3 +58,25 @@ $ kubectl get PersistentVolume
 NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM               REASON    AGE
 pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8   10Gi       RWO           Delete          Bound     default/html-disk             54s
 ```
+######If you "describe" your PersistentVolume:
+```
+$ kubectl describe PersistentVolume pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8
+Name:           pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8
+Labels:         failure-domain.beta.kubernetes.io/region=europe-west1
+                failure-domain.beta.kubernetes.io/zone=europe-west1-c
+StorageClass:   generic
+Status:         Bound
+Claim:          default/html-disk
+Reclaim Policy: Delete
+Access Modes:   RWO
+Capacity:       10Gi
+Message:
+Source:
+    Type:       GCEPersistentDisk (a Persistent Disk resource in Google Compute Engine)
+    PDName:     gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8
+    FSType:
+    Partition:  0
+    ReadOnly:   false
+No events.
+```
+You will notice that the `StorageClass:   generic` is 
