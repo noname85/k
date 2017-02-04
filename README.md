@@ -3,6 +3,7 @@
 #
 
 ### If you want to see the definitions of any "Kind" this below links:
+###### Notice that you need to replace the "v1" by the "apiVersion" of the "Kind" you want to check
 
 #####v1:
 https://kubernetes.io/docs/api-reference/v1/definitions/
