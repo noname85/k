@@ -45,3 +45,16 @@ spec:
 ```
 
 notice that we are using the **annotations** `volume.beta.kubernetes.io/storage-class: "generic"` to point to the **StorageClass** we created above, this will define the `type` and `zone` for the disk
+
+######Check your PersistentVolumeClaim:
+```
+$ kubectl get PersistentVolumeClaim
+NAME        STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
+html-disk   Bound     pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8   10Gi       RWO           45s
+```
+######Few seconds later a PersistentVolume will be created, check it:
+```
+$ kubectl get PersistentVolume
+NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM               REASON    AGE
+pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8   10Gi       RWO           Delete          Bound     default/html-disk             54s
+```
