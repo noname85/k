@@ -7,7 +7,7 @@ YWRtaW51c2VybmFtZQ==
 $ echo -n "myverysecretpassword" | base64
 bXl2ZXJ5c2VjcmV0cGFzc3dvcmQ=
 ```
-###Create a yaml file with below format
+####Create a yaml file with below format
 ```javascript
 apiVersion: v1
 kind: Secret
@@ -19,7 +19,7 @@ data:
   username: YWRtaW51c2VybmFtZQ==
 ```
 
-#To create the secret from a file:
+####To create the secret from a file:
 
 ```javascript
 $ cat FileWithSecret.json | base64 > secretFile
