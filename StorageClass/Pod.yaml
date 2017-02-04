@@ -1,0 +1,15 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-webserver
+spec:
+  containers:
+    - name: my-web-server
+      image: nginx
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: data
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: html-disk
