@@ -113,3 +113,23 @@ spec:
 - To use the disk you need to tell where you want to mount it using the `volumeMounts` declaration followed by `mountPath: "/var/www/html"` and the name of the `volumes` you want to mount using `name: data`.
 - After that you declare the `volumes` and give a name to it `name: data`, you need to specify which `persistentVolumeClaim` you want to use, for that you `claimName: html-disk` declaration.
 
+######Let's check the volume on the POD:
+```
+$ kubectl get po
+NAME            READY     STATUS    RESTARTS   AGE
+pod-webserver   1/1       Running   0          58s
+
+$ kubectl exec -ti pod-webserver bash
+root@pod-webserver:/# 
+
+root@pod-webserver:/# df -h                                                                                                                                                                                             
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          95G  3.3G   92G   4% /
+tmpfs           1.9G     0  1.9G   0% /dev
+tmpfs           1.9G     0  1.9G   0% /sys/fs/cgroup
+/dev/sda1        95G  3.3G   92G   4% /etc/hosts
+/dev/sdb        9.8G   37M  9.3G   1% /var/www/html
+tmpfs           1.9G   12K  1.9G   1% /run/secrets/kubernetes.io/serviceaccount
+shm              64M     0   64M   0% /dev/shm
+```
+- We can see that there is a new disk `/dev/sdb` that is mounted on `/var/www/html`.
