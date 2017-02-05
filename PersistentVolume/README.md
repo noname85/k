@@ -89,7 +89,7 @@ gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8  europe-west1-c 
 ```
 - With the above output you can see that as per the `StorageClass` we created above the disk is `type: pd-standard` and is in the `zone: europe-west1-c`.
 
-####- Now let's use the disk:
+####- Now let's use the Persistent Volume:
 
 ```
 kind: Pod
