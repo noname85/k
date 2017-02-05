@@ -133,3 +133,8 @@ tmpfs           1.9G   12K  1.9G   1% /run/secrets/kubernetes.io/serviceaccount
 shm              64M     0   64M   0% /dev/shm
 ```
 - We can see that there is a new disk `/dev/sdb` that is mounted on `/var/www/html`.
+
+# Caveats
+
+- Currently there is no way to declare a `StorageClass` for multiple zones.
+- If you use the Alpha annotation `volume.alpha.kubernetes.io/storage-class: anything` on your `PersistentVolumeClaim` the `StorageClass` will be ignored, you can use the Alpha annotation if you want to create disks in multiple zones, but you will not be able to specify the `type` of the disk and a `pd-standard` will be created.
