@@ -137,4 +137,4 @@ shm              64M     0   64M   0% /dev/shm
 # Caveats
 
 - Currently there is no way to declare a `StorageClass` for multiple zones.
-- If you use the Alpha annotation `volume.alpha.kubernetes.io/storage-class: anything` on your `PersistentVolumeClaim` the `StorageClass` will be ignored, you can use the Alpha annotation if you want to create disks in multiple zones, but you will not be able to specify the `type` of the disk and a `pd-standard` will be created.
+- If you use the Alpha annotation `volume.alpha.kubernetes.io/storage-class: generic` on your `PersistentVolumeClaim` the `StorageClass` will be ignored, you can use the Alpha annotation if you want to create disks in multiple zones, but you will not be able to specify the `type` of the disk and a `pd-standard` will be created.
