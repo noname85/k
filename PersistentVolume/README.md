@@ -2,7 +2,7 @@
 
 - PersistentVolume (PV) is the "physical" disk itself.
 - PersistentVolumeClaim (PVC) is a request/claim to use a "physical" disk.
-- StorageClass allow you to create different type of storage, "classes" of storage, to be requested/claimed.
+- StorageClass allow you to create different type of storage, "classes" of storage, to be requested/claimed by the PersistentVolumeClaim (PVC).
 
 For the examples here, we will not create a "PersistentVolume" this will be created automatically when you create the "PersistentVolumeClaim" because the "PersistentVolumeClaim" will request a type of storage that is declared on the "StorageClass".
 
@@ -79,4 +79,12 @@ Source:
     ReadOnly:   false
 No events.
 ```
-You will notice that the `StorageClass:   generic` is 
+- Notice that the `StorageClass:   generic` is the one declared on the PersistentVolumeClaim (PVC) using the **annotation** `volume.beta.kubernetes.io/storage-class: "generic" `.
+- The `PDName:     gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8` is the name of the disk created on the GCP you can check it with below command:
+
+```
+$ gcloud compute disks list --filter NAME = gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8
+NAME                                                             ZONE            SIZE_GB  TYPE         STATUS
+gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8  europe-west1-c  10       pd-standard  READY
+```
+- With the above output you can see that as per the `StorageClass` we created above the disk is `type: pd-standard` and is in the `zone: europe-west1-c`.
