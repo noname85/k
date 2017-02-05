@@ -8,7 +8,7 @@ For the examples here, we will not create a `PersistentVolume` this will be crea
 
 - `StorageClass` allow you to create different type of storage, "classes" of storage, to be requested/claimed by the PersistentVolumeClaim (PVC).
 
-####- First we create a "StorageClass":
+####- First we create a `StorageClass`:
 ```
 kind: StorageClass
 apiVersion: storage.k8s.io/v1beta1
@@ -30,7 +30,7 @@ NAME      TYPE
 generic   kubernetes.io/gce-pd   
 ```
 
-####- Second we create a "PersistentVolumeClaim":
+####- Second we create a `PersistentVolumeClaim`:
 ```
 kind: PersistentVolumeClaim 
 apiVersion: v1 
