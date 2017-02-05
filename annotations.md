@@ -9,3 +9,8 @@ kubernetes.io/ingress.global-static-ip-name: static-ip-name
 ```
 volume.beta.kubernetes.io/storage-class: "generic" 
 ```
+
+######- Using the `Alpha` annotation on the "PersistentVolumeClaim" will ignore the "StorageClass" completely:
+```
+volume.alpha.kubernetes.io/storage-class: "generic"
+```
