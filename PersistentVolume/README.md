@@ -1,10 +1,12 @@
 ## PersistentVolume example
 
-- PersistentVolume (PV) is the "physical" disk itself.
-- PersistentVolumeClaim (PVC) is a request/claim to use a "physical" disk.
-- StorageClass allow you to create different type of storage, "classes" of storage, to be requested/claimed by the PersistentVolumeClaim (PVC).
-
 For the examples here, we will not create a "PersistentVolume" this will be created automatically when you create the "PersistentVolumeClaim" because the "PersistentVolumeClaim" will request a type of storage that is declared on the "StorageClass".
+
+- `PersistentVolume` (PV) is the "physical" disk itself.
+
+- `PersistentVolumeClaim` (PVC) is a request/claim to use a "physical" disk.
+
+- `StorageClass` allow you to create different type of storage, "classes" of storage, to be requested/claimed by the PersistentVolumeClaim (PVC).
 
 ####- First we create a "StorageClass":
 ```
