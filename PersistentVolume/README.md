@@ -108,6 +108,6 @@ spec:
       persistentVolumeClaim:
         claimName: html-disk
 ```
-- To use the disk you need to tell where you want to mount it using the `volumeMounts` declaratio followed by `mountPath: "/var/www/html"` and the name of the `volumes` you want to mount using `name: data`.
-- After that you declare the `volumes` and give a name to it `name: data`, now you need to say what specify `persistentVolumeClaim` and declare that you want to use the `PersistentVolumeClaim` declared above, you do this using `claimName: html-disk`.
+- To use the disk you need to tell where you want to mount it using the `volumeMounts` declaration followed by `mountPath: "/var/www/html"` and the name of the `volumes` you want to mount using `name: data`.
+- After that you declare the `volumes` and give a name to it `name: data`, you need to specify which `persistentVolumeClaim` you want to use, for that you `claimName: html-disk` declaration.
 
