@@ -1,6 +1,6 @@
 ## PersistentVolume example
 
-For the examples here, we will not create a "PersistentVolume" this will be created automatically when you create the "PersistentVolumeClaim" because the "PersistentVolumeClaim" will request a type of storage that is declared on the "StorageClass".
+For the examples here, we will not create a `PersistentVolume` this will be created automatically when you create the `PersistentVolumeClaim` because the `PersistentVolumeClaim` will request a type of storage that is declared on the `StorageClass`.
 
 - `PersistentVolume` (PV) is the "physical" disk itself.
 
