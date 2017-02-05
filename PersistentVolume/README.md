@@ -44,7 +44,7 @@ spec:
       storage: "10Gi"
 ```
 
-notice that we are using the **annotations** `volume.beta.kubernetes.io/storage-class: "generic"` to point to the **StorageClass** we created above, this will define the `type` and `zone` for the disk
+Notice that we are using the **annotations** `volume.beta.kubernetes.io/storage-class: "generic"` to point to the **StorageClass** we created above, this will define the `type` and `zone` for the disk physical (PV) that will be created.
 
 ######Check your PersistentVolumeClaim:
 ```
@@ -52,7 +52,7 @@ $ kubectl get PersistentVolumeClaim
 NAME        STATUS    VOLUME                                     CAPACITY   ACCESSMODES   AGE
 html-disk   Bound     pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8   10Gi       RWO           45s
 ```
-######Few seconds later a PersistentVolume will be created, check it:
+######Few seconds later a PersistentVolume (PV) will be created, check it:
 ```
 $ kubectl get PersistentVolume
 NAME                                       CAPACITY   ACCESSMODES   RECLAIMPOLICY   STATUS    CLAIM               REASON    AGE
@@ -80,7 +80,7 @@ Source:
 No events.
 ```
 - Notice that the `StorageClass:   generic` is the one declared on the PersistentVolumeClaim (PVC) using the **annotation** `volume.beta.kubernetes.io/storage-class: "generic" `.
-- The `PDName:     gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8` is the name of the disk created on the GCP you can check it with below command:
+- The `PDName:     gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8` is the name of the disk created on the Google Cloud Platform, you can check it with below command:
 
 ```
 $ gcloud compute disks list --filter NAME = gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8
@@ -88,3 +88,26 @@ NAME                                                             ZONE           
 gke-multi1-5-2-207a043-pvc-b6bfda50-eafa-11e6-9eb1-42010a8400e8  europe-west1-c  10       pd-standard  READY
 ```
 - With the above output you can see that as per the `StorageClass` we created above the disk is `type: pd-standard` and is in the `zone: europe-west1-c`.
+
+####- Now let's use the disk:
+
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-webserver
+spec:
+  containers:
+    - name: my-web-server
+      image: nginx
+      volumeMounts:
+      - mountPath: "/var/www/html"
+        name: data
+  volumes:
+    - name: data
+      persistentVolumeClaim:
+        claimName: html-disk
+```
+- To use the disk you need to tell where you want to mount it using the `volumeMounts` declaratio followed by `mountPath: "/var/www/html"` and the name of the `volumes` you want to mount using `name: data`.
+- After that you declare the `volumes` and give a name to it `name: data`, now you need to say what specify `persistentVolumeClaim` and declare that you want to use the `PersistentVolumeClaim` declared above, you do this using `claimName: html-disk`.
+
