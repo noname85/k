@@ -37,3 +37,37 @@ Data
 secretFile:  3153 bytes
 
 ```
+####Using the Secret on a Deployment:
+
+``` 
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deployment-with-secret
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secrettest
+  template:
+    metadata:
+      labels:
+        app: secrettest
+    spec:
+      containers:
+        - image: nginx
+          name: nginx-server
+          ports:
+            - containerPort: 80
+          env:
+            - name: SECRET_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: thesecret
+                  key: username
+            - name: SECRET_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: thesecret
+                  key: password       
+```                  
