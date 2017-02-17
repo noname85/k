@@ -20,7 +20,8 @@ data:
 ```
 
 ####To create the secret from a file:
-`To create a secret from file don't conver it to base64 otherwise the information will be displayed in base64 on the POD`
+When creating a secret from file don't convert it to `base64` otherwise the information will be displayed in base64 on the POD`
+
 ```javascript
 $ kubectl create secret generic secret-from-file --from-file=key.json
 
