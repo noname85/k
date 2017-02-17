@@ -70,4 +70,35 @@ spec:
                 secretKeyRef:
                   name: thesecret
                   key: password       
-```                  
+```
+
+####Using the Secret on a Deployment as a volume:
+
+```
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: deployment-with-secret
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secrettest
+  template:
+    metadata:
+      labels:
+        app: secrettest
+    spec:
+      containers:
+        - image: nginx
+          name: nginx-server
+          ports:
+            - containerPort: 80
+          volumeMounts:
+          - mountPath: "/mnt/secret"
+            name: secret-volume
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: thesecret
+```
