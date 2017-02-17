@@ -37,7 +37,7 @@ Data
 secretFile:  3153 bytes
 
 ```
-####Using the Secret on a Deployment:
+####Using the Secret on a Deployment as environment variables:
 
 ``` 
 apiVersion: extensions/v1beta1
