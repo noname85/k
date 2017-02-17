@@ -20,22 +20,19 @@ data:
 ```
 
 ####To create the secret from a file:
-
+`To create a secret from file don't conver it to base64 otherwise the information will be displayed in base64 on the POD`
 ```javascript
-$ cat FileWithSecret.json | base64 > secretFile
-$ kubectl create secret generic secret-json --from-file=secretFile
+$ kubectl create secret generic secret-from-file --from-file=key.json
 
-$ kubectl describe secret secret-json
-
-Name:           secret-json
+$ kubectl describe secret secret-from-file
+Name:           secret-from-file
 Namespace:      default
 Labels:         <none>
 Annotations:    <none>
 Type:   Opaque
 Data
 ====
-secretFile:  3153 bytes
-
+key.json:       2323 bytes
 ```
 ####Using the Secret on a Deployment as environment variables:
 
