@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: cloudproxy-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudproxy
+  template:
+    metadata:
+      labels:
+        app: cloudproxy
+    spec:
+      containers:
+        - image: nginx
+          name: nginx-server
+          ports:
+            - containerPort: 80
+          volumeMounts:
+          - name: secret-volume
+            mountPath: /secret/
+          - name: socket-connection
+            mountPath: /cloudsql
+        - image: gcr.io/cloudsql-docker/gce-proxy:1.09
+          name: proxy-container
+          volumeMounts:
+          - name: socket-connection
+            mountPath: /cloudsql
+          - name: secret-volume
+            mountPath: /secret/
+          command: ["/cloud_sql_proxy", "-dir=/cloudsql", "-credential_file=/secret/key.json", "-instances=gke-cluster:us-central1:cloudtest"]
+      volumes:
+      - name: secret-volume
+        secret:
+          secretName: cloudproxy-creds
+      - name: socket-connection
+        emptyDir: {}
